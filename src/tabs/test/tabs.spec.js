@@ -778,4 +778,34 @@ describe('tabs', function() {
       expect(elm.find('.outer-tab-content').eq(0).text().trim()).toEqual(scope.tabs[0].content);
     }));
   });
+  describe('tab switching using keyboard', function() {
+    beforeEach(inject(function($compile, $rootScope) {
+      scope = $rootScope.$new();
+
+      elm = $compile([
+        '<tabset>',
+        '  <tab><tab-heading>heading 0</tab-heading>content 0</tab>',
+        '  <tab><tab-heading>heading 1</tab-heading>content 1</tab>',
+        '  <tab><tab-heading>heading 2</tab-heading>content 2</tab>',
+        '</tabset>'
+      ].join('\n'))(scope);
+      scope.$apply();
+    }));
+
+    it('should switch tab on focus', function() {
+      titles().eq(0).find('a').click();
+
+	  titles().eq(1).find('a').focus();
+	  expect(titles().eq(1)).toHaveClass('active');
+      expect(contents().eq(1)).toHaveClass('active');
+	  expect(titles().eq(0)).not.toHaveClass('active');
+      expect(contents().eq(0)).not.toHaveClass('active');
+
+	  titles().eq(2).find('a').focus();
+	  expect(titles().eq(2)).toHaveClass('active');
+      expect(contents().eq(2)).toHaveClass('active');
+      expect(titles().eq(1)).not.toHaveClass('active');
+      expect(contents().eq(1)).not.toHaveClass('active');
+    });
+  });      
 });
