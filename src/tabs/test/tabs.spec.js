@@ -795,14 +795,14 @@ describe('tabs', function() {
     it('should switch tab on focus', function() {
       titles().eq(0).find('a').click();
 
-	  titles().eq(1).find('a').focus();
-	  expect(titles().eq(1)).toHaveClass('active');
+      titles().eq(1).find('a').focus();
+      expect(titles().eq(1)).toHaveClass('active');
       expect(contents().eq(1)).toHaveClass('active');
-	  expect(titles().eq(0)).not.toHaveClass('active');
+      expect(titles().eq(0)).not.toHaveClass('active');
       expect(contents().eq(0)).not.toHaveClass('active');
 
-	  titles().eq(2).find('a').focus();
-	  expect(titles().eq(2)).toHaveClass('active');
+      titles().eq(2).find('a').focus();
+      expect(titles().eq(2)).toHaveClass('active');
       expect(contents().eq(2)).toHaveClass('active');
       expect(titles().eq(1)).not.toHaveClass('active');
       expect(contents().eq(1)).not.toHaveClass('active');
